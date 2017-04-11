@@ -1,25 +1,24 @@
 //
 //  UIStringExtensions.swift
-//  WithMe-Mobile
 //
-//  Created by Justin Holman on 10/14/16.
-//  Copyright © 2016 WithMe. All rights reserved.
+//  Created by Justin Holman on 4/10/17.
+//  Copyright © 2017. All rights reserved.
 //
 
 import Foundation
 
 extension String {
     
-    enum Associate: String {
-        case headerProductDetails = "HEADER_PRODUCTDETAILS"
-        case headerCart = "Header_Cart"
+    enum AppString: String {
+        case headerHome = "HeaderHome"
+        case headerPeople = "Header_Cart"
         case headerCartCustInfo = "Header_CartCustInfo"
         case headerCartPayment = "Header_CartPayment"
         case loadingRequests = "LoadingRequests"
         case headerAlertStoreSelector = "HeaderAlertStoreSelector"
     }
     
-    static func localized(associate: Associate) -> String {
+    static func localized(_ associate: AppString) -> String {
         return NSLocalizedString(associate.rawValue, comment: "")
     }
     
@@ -36,31 +35,31 @@ extension String {
     }
 
     func digitsOnly() -> String {
-        return self.componentsSeparatedByCharactersInSet(NSCharacterSet.decimalDigitCharacterSet().invertedSet).joinWithSeparator("")
+        return self.components(separatedBy: CharacterSet.decimalDigits.inverted).joined(separator: "")
     }
 
-    func formatCurrency(dataToFormat: Double) -> String {
+    func formatCurrency(_ dataToFormat: Double) -> String {
         let formatter = NumberFormatter()
-        formatter.numberStyle = .CurrencyStyle
-        formatter.roundingMode = .RoundHalfEven
-        
-        return formatter.stringFromNumber(dataToFormat)!
+        formatter.numberStyle = .currency
+        formatter.roundingMode = .halfEven
+
+        return formatter.string(from: NSNumber(value: dataToFormat))!
     }
 
-    func formatDate(dateToFormat: NSDate, format: String = "MM/dd/yyy") -> String {
+    func formatDate(_ dateToFormat: Date, format: String = "MM/dd/yyy") -> String {
         //        let locale = NSLocale(localeIdentifier: "en_US_POSIX")
         //        let dateFormat = NSDateFormatter.dateFormatFromTemplate(format, options: 0, locale: locale)
         //        let dateForma
         //        formatter.date = "MMM d"
         let formatter = DateFormatter()
         formatter.dateFormat = format
-        return formatter.stringFromDate(dateToFormat)
+        return formatter.string(from: dateToFormat)
     }
 
-    func formatDateWithTime(dateToFormat: NSDate) -> String {
-        let formatter = NSDateFormatter()
+    func formatDateWithTime(_ dateToFormat: Date) -> String {
+        let formatter = DateFormatter()
         formatter.dateFormat = "MM/dd/yyyy hh:mm a"
-        return formatter.stringFromDate(dateToFormat)
+        return formatter.string(from: dateToFormat)
     }
 
     /// Formats a string into a phone number
@@ -70,21 +69,21 @@ extension String {
         let formattedPhone = NSMutableString(string: self.digitsOnly())
         
         if self.characters.count == 10 {
-            formattedPhone.insertString("(", atIndex: 0)
-            formattedPhone.insertString(")", atIndex: 4)
-            formattedPhone.insertString(" ", atIndex: 5)
-            formattedPhone.insertString("-", atIndex: 9)
+            formattedPhone.insert("(", at: 0)
+            formattedPhone.insert(")", at: 4)
+            formattedPhone.insert(" ", at: 5)
+            formattedPhone.insert("-", at: 9)
         }
         
         return formattedPhone as String
     }
     
     func properCased() -> String {
-        return String(self.characters.prefix(1)).uppercaseString + String(self.characters.dropFirst())
+        return String(self.characters.prefix(1)).uppercased() + String(self.characters.dropFirst())
     }
     
     func trimed() -> String {
-        return self.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
+        return self.trimmingCharacters(in: CharacterSet.whitespaces)
     }
 
     var isValidEmail: Bool {
@@ -92,7 +91,7 @@ extension String {
 
         let emailTest = NSPredicate(format: "SELF MATCHES %@", emailRegEx)
 
-        return emailTest.evaluateWithObject(self)
+        return emailTest.evaluate(with: self)
     }
 
     var isValidPhone: Bool {
@@ -105,7 +104,7 @@ extension String {
 
         let phoneTest = NSPredicate(format: "SELF MATCHES %@", phoneRegEx)
 
-        return phoneTest.evaluateWithObject(self)
+        return phoneTest.evaluate(with: self)
     }
 
     //    func phoneNumberValidation(value: String) -> Bool {

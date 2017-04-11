@@ -2,8 +2,8 @@
 //  UITextFieldExtensions.swift
 //  WithMe-Mobile
 //
-//  Created by Justin Holman on 9/14/16.
-//  Copyright © 2016 WithMe. All rights reserved.
+//  Created by Justin Holman on 4/10/17.
+//  Copyright © 2017. All rights reserved.
 //
 
 import Foundation
@@ -29,7 +29,7 @@ extension UITextField {
 //            
 //        case .Core:
             self.borderStyle = .none
-            self.addBorder(color: UIColor.lightGray, thickness: 1.0, borderType: .bottom)
+            self.addBorder(UIColor.lightGray, thickness: 1.0, borderType: .bottom)
 //            break;
 //        case .Shopper:
 //            self.textColor = UIColor.whiteColor()
@@ -44,13 +44,13 @@ extension UITextField {
      */
     func setForDarkBackground() {
         self.borderStyle = .none
-        self.addBorder(color: UIColor.lightGray, thickness: 1.0, borderType: .bottom)
+        self.addBorder(UIColor.lightGray, thickness: 1.0, borderType: .bottom)
         self.textColor = UIColor.white
     }
     
-    func setForDarkBackground(withPlaceholderText: String, color: UIColor = UIColor.appTextSecondary) {
+    func setForDarkBackground(_ withPlaceholderText: String, color: UIColor = UIColor.appTextSecondary) {
         self.borderStyle = .none
-        self.addBorder(color: UIColor.lightGray, thickness: 1.0, borderType: .bottom)
+        self.addBorder(UIColor.lightGray, thickness: 1.0, borderType: .bottom)
         self.textColor = UIColor.white
         
         self.attributedPlaceholder = NSAttributedString (string: withPlaceholderText, attributes: [NSForegroundColorAttributeName: color])

@@ -1,9 +1,8 @@
 //
 //  UIColor+Appearance.swift
-//  WithMe-Mobile
 //
-//  Created by Justin Holman on 9/12/16.
-//  Copyright © 2016 WithMe. All rights reserved.
+//  Created by Justin Holman on 4/10/17.
+//  Copyright © 2017. All rights reserved.
 //
 
 import Foundation

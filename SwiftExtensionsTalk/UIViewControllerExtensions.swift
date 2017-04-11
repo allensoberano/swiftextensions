@@ -1,9 +1,8 @@
 //
 //  UIViewControllerExtensions.swift
-//  WithMe-Mobile
 //
-//  Created by Justin Holman on 10/3/16.
-//  Copyright © 2016 WithMe. All rights reserved.
+//  Created by Justin Holman on 4/10/17.
+//  Copyright © 2017. All rights reserved.
 //
 
 import AVFoundation
@@ -47,6 +46,8 @@ extension UIViewController {
         #elseif PRODAPI
             return .production
         #endif
+
+        return .dev
  
     }
     
@@ -54,35 +55,14 @@ extension UIViewController {
         return AVCaptureDevice.authorizationStatus(forMediaType: AVMediaTypeVideo)
     }
     
-    func playBadSound() -> AVAudioPlayer? {
-        let path = Bundle.mainBundle().pathForResource("banana.mp3", ofType: nil)
-        let url = NSURL(fileURLWithPath: path!)
-        
-        
-        
-        do {
-            try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
-            try AVAudioSession.sharedInstance().setActive(true)
-            
-            
-            let sound = try AVAudioPlayer(contentsOfURL: url)
-            
-            sound.prepareToPlay()
-            sound.play()
-            return sound
-        } catch {
-            print("error")
-        }
-        
-        return nil
-    }
+    
     
     /// Adds a cancel button to the upper left
-    func addCancelButton(popController: Bool = false) {
-        var cancelButton = UIBarButtonItem(title: "Cancel", style: .Plain, target: self, action: #selector(self.onCancelTap(_:)))
+    func addCancelButton(_ popController: Bool = false) {
+        var cancelButton = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(self.onCancelTap(_:)))
         
         if popController {
-            cancelButton = UIBarButtonItem(title: "Cancel", style: .Plain, target: self, action: #selector(self.onCancelPopTap(_:)))
+            cancelButton = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(self.onCancelPopTap(_:)))
         }
         
         navigationItem.leftBarButtonItem = cancelButton
@@ -93,65 +73,69 @@ extension UIViewController {
         self.navigationController?.navigationBar.backIndicatorImage = UIImage(appImage: .arrowLeft)
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
     }
-    
-    func setNavigationTitle(title: String) {
-        self.navigationItem.title = title.uppercased()
+
+
+    /// Sets the title of the navigation bar
+    ///
+    /// - Parameter title: Title to set
+    func setNavigationTitle(_ title: String) {
+        self.navigationItem.title = title.properCased()
     }
     
     /// Sets the status bar to black
     func setStatusBarBlack() {
         if let statusBar: UIView = UIApplication.shared.value(forKey: "statusBar") as? UIView {
-            if statusBar.respondsToSelector(Selector("setBackgroundColor:")) {
-                statusBar.backgroundColor = UIColor.blackColor()
+            if statusBar.responds(to: Selector("setBackgroundColor:")) {
+                statusBar.backgroundColor = UIColor.black
             }
         }
     }
 
     func showMessage(withTitle title: String, message: String) {
-        let messageView = UIAlertController(title: title, message: message, preferredStyle: .Alert)
+        let messageView = UIAlertController(title: title, message: message, preferredStyle: .alert)
         
-        let okAction = UIAlertAction(title: "Ok", style: .Default) { (action) in
+        let okAction = UIAlertAction(title: "Ok", style: .default) { (action) in
             
         }
         messageView.addAction(okAction)
-        self.presentViewController(messageView, animated: true, completion: nil)
+        self.present(messageView, animated: true, completion: nil)
         
     }
     
-    internal func onCancelTap(sender: UIBarButtonItem) {
-        let confirmCancelView = UIAlertController(title: "Confirm Cancel", message: "Are you sure you want to cancel?", preferredStyle: .Alert)
+    internal func onCancelTap(_ sender: UIBarButtonItem) {
+        let confirmCancelView = UIAlertController(title: "Confirm Cancel", message: "Are you sure you want to cancel?", preferredStyle: .alert)
         
-        let noAction = UIAlertAction(title: "No", style: .Default, handler: nil)
+        let noAction = UIAlertAction(title: "No", style: .default, handler: nil)
         confirmCancelView.addAction(noAction)
         
-        let yesAction = UIAlertAction(title: "Yes", style: .Default) { (action) in
+        let yesAction = UIAlertAction(title: "Yes", style: .default) { (action) in
             if self.presentingViewController != nil {
-                self.dismissViewControllerAnimated(true, completion: nil)
+                self.dismiss(animated: true, completion: nil)
             } else {
-                self.navigationController?.popViewControllerAnimated(true)
+                self.navigationController?.popViewController(animated: true)
             }
         }
         confirmCancelView.addAction(yesAction)
         
-        self.presentViewController(confirmCancelView, animated: true, completion: nil)
+        self.present(confirmCancelView, animated: true, completion: nil)
     }
     
-    internal func onCancelPopTap(sender: UIBarButtonItem) {
+    internal func onCancelPopTap(_ sender: UIBarButtonItem) {
         hasChanged = true
         if hasChanged {
-            let confirmCancelView = UIAlertController(title: "Confirm Cancel", message: "Are you sure you want to cancel?", preferredStyle: .Alert)
+            let confirmCancelView = UIAlertController(title: "Confirm Cancel", message: "Are you sure you want to cancel?", preferredStyle: .alert)
             
-            let noAction = UIAlertAction(title: "No", style: .Default, handler: nil)
+            let noAction = UIAlertAction(title: "No", style: .default, handler: nil)
             confirmCancelView.addAction(noAction)
             
-            let yesAction = UIAlertAction(title: "Yes", style: .Default) { (action) in
-                self.navigationController?.popViewControllerAnimated(true)
+            let yesAction = UIAlertAction(title: "Yes", style: .default) { (action) in
+                self.navigationController?.popViewController(animated: true)
             }
             confirmCancelView.addAction(yesAction)
             
-            self.presentViewController(confirmCancelView, animated: true, completion: nil)
+            self.present(confirmCancelView, animated: true, completion: nil)
         } else {
-            self.navigationController?.popViewControllerAnimated(true)
+            self.navigationController?.popViewController(animated: true)
         }
     }
 

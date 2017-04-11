@@ -1,9 +1,8 @@
 //
 //  UIFont+Appearance.swift
-//  WithMe-Mobile
 //
-//  Created by Justin Holman on 9/12/16.
-//  Copyright © 2016 WithMe. All rights reserved.
+//  Created by Justin Holman on 4/10/17.
+//  Copyright © 2017. All rights reserved.
 //
 
 import Foundation
@@ -19,14 +18,11 @@ extension UIFont {
     }
     
     convenience init!(appFont: AppFont) {
-        self.init(name: appFont.rawValue, size: UIFont.systemFontSize())
+        self.init(name: appFont.rawValue, size: UIFont.systemFontSize)
     }
     
     convenience init!(appFont: AppFont, size: CGFloat) {
         self.init(name: appFont.rawValue, size: size)
     }
     
-//    func standard() {
-//        self.init(name: AppFont.bold.rawValue, size: 15)
-//    }
 }

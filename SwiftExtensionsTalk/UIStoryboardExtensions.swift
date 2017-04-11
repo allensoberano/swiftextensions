@@ -3,7 +3,7 @@
 //  SwiftExtensionsTalk
 //
 //  Created by Justin Holman on 4/10/17.
-//  Copyright © 2017 Elantrics, Inc. All rights reserved.
+//  Copyright © 2017. All rights reserved.
 //
 
 import Foundation
@@ -13,6 +13,7 @@ extension UIStoryboard {
     enum AppStoryboards: String {
         case login = "Login"
         case home = "Home"
+        case people = "People"
     }
 
     convenience init(appStoryboard: AppStoryboards) {

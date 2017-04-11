@@ -1,27 +1,26 @@
 //
 //  NSDateFormatter.swift
-//  WithMe-Mobile
 //
-//  Created by Justin Holman on 10/26/16.
-//  Copyright © 2016 WithMe. All rights reserved.
+//  Created by Justin Holman on 4/10/17.
+//  Copyright © 2017. All rights reserved.
 //
 
 import Foundation
 
-extension NSDateFormatter {
+extension DateFormatter {
     
-    func convertDateFromApi(apiDate: String) -> NSDate! {
-        self.locale = NSLocale(localeIdentifier: "en_US_POSIX")
-        self.timeZone = NSTimeZone(abbreviation: "UTC")
+    func convertDateFromApi(_ apiDate: String) -> NSDate! {
+        self.locale = Locale(identifier: "en_US_POSIX") as Locale!
+        self.timeZone = TimeZone(abbreviation: "UTC")
         self.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
 
-        return self.dateFromString(apiDate)!
+        return self.date(from: apiDate)! as NSDate
     }
 
-    func createDate(year: Int, month: Int, day: Int = 1) -> NSDate {
+    func createDate(_ year: Int, month: Int, day: Int = 1) -> NSDate {
         self.dateFormat = "MM/dd/yyyy"
         
-        return self.dateFromString("\(month)/\(day)/\(year)")!
+        return self.date(from: "\(month)/\(day)/\(year)")! as NSDate
     }
     
 }

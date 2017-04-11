@@ -1,40 +1,39 @@
 //
 //  NSUserDefaultsExtensions.swift
-//  WithMe-Mobile
 //
-//  Created by Justin Holman on 10/21/16.
-//  Copyright © 2016 WithMe. All rights reserved.
+//  Created by Justin Holman on 14/10/17.
+//  Copyright © 2017. All rights reserved.
 //
 
 import Foundation
 
-extension NSUserDefaults {
+extension UserDefaults {
     
     var alertSettings: [String] {
         get {
-            if let value = NSUserDefaults.standardUserDefaults().valueForKey("alertSettings") as? [String] {
+            if let value = UserDefaults.standard.value(forKey: "alertSettings") as? [String] {
                 
                 return value
             }
             return [String]()
         }
         set (value) {
-            NSUserDefaults.standardUserDefaults().setObject(value, forKey: "alertSettings")
-            NSUserDefaults.standardUserDefaults().synchronize()
+            UserDefaults.standard.set(value, forKey: "alertSettings")
+            UserDefaults.standard.synchronize()
         }
     }
     
     var selectedStores: [String] {
         get {
-            if let value = NSUserDefaults.standardUserDefaults().valueForKey("selectedStores") as? [String] {
+            if let value = UserDefaults.standard.value(forKey: "selectedStores") as? [String] {
                 
                 return value
             }
             return [String]()
         }
         set (value) {
-            NSUserDefaults.standardUserDefaults().setObject(value, forKey: "selectedStores")
-            NSUserDefaults.standardUserDefaults().synchronize()
+            UserDefaults.standard.set(value, forKey: "selectedStores")
+            UserDefaults.standard.synchronize()
         }
     }
     
