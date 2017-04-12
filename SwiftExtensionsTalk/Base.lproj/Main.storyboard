@@ -32,16 +32,26 @@
                                     <action selector="onShowPeopleTap:" destination="BYZ-38-t0r" eventType="touchUpInside" id="FAJ-rn-PnV"/>
                                 </connections>
                             </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="mUa-EO-Wxp">
+                                <rect key="frame" x="16" y="118" width="40" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="40" id="3A9-cc-m1M"/>
+                                    <constraint firstAttribute="height" constant="40" id="EMr-CK-abA"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="mUa-EO-Wxp" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="HHV-Ap-l1e"/>
                             <constraint firstAttribute="trailingMargin" secondItem="qk8-lp-IEy" secondAttribute="trailing" id="eyP-fN-Xfh"/>
+                            <constraint firstItem="mUa-EO-Wxp" firstAttribute="top" secondItem="qk8-lp-IEy" secondAttribute="bottom" constant="8" id="fXF-P2-g7N"/>
                             <constraint firstItem="qk8-lp-IEy" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="rB7-4V-etB"/>
                             <constraint firstItem="qk8-lp-IEy" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="16" id="w2n-Ro-SN3"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="ua5-GO-WMz"/>
                     <connections>
+                        <outlet property="sampleImageView" destination="mUa-EO-Wxp" id="aEK-Dr-8hs"/>
                         <outlet property="showPeopleButton" destination="qk8-lp-IEy" id="Ecc-wv-Nv1"/>
                     </connections>
                 </viewController>

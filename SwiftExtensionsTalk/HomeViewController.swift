@@ -17,6 +17,13 @@ class HomeViewController: UIViewController {
         }
     }
 
+    @IBOutlet weak var sampleImageView: UIImageView! {
+        didSet {
+            sampleImageView.image = UIImage(named: "database")
+        }
+    }
+
+
     @IBAction func onShowPeopleTap(_ sender: Any) {
         let peopleVC = UIStoryboard(appStoryboard: .people).instantiateInitialViewController() as! PeopleViewController
 

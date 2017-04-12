@@ -91,7 +91,6 @@
 				6D6622581E9C8C4E002140DC /* UI */,
 				6D6622501E9C8B53002140DC /* Talk */,
 				6D66223D1E9C898E002140DC /* AppDelegate.swift */,
-				6D6622411E9C898E002140DC /* Main.storyboard */,
 				6D6622441E9C898E002140DC /* Assets.xcassets */,
 				6D6622461E9C898E002140DC /* LaunchScreen.storyboard */,
 				6D6622491E9C898E002140DC /* Info.plist */,
@@ -111,11 +110,6 @@
 		6D6622511E9C8B81002140DC /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				6D6622691E9C8ECB002140DC /* UILabelExtensions.swift */,
-				6D66226A1E9C8ECB002140DC /* UITableViewExtensions.swift */,
-				6D66226B1E9C8ECB002140DC /* UITextFieldExtensions.swift */,
-				6D66226C1E9C8ECB002140DC /* UIViewControllerExtensions.swift */,
-				6D66226D1E9C8ECB002140DC /* UIViewExtensions.swift */,
 				6D66225B1E9C8EB9002140DC /* NSDateExtensions.swift */,
 				6D66225C1E9C8EB9002140DC /* NSDateFormatterExtensions.swift */,
 				6D66225D1E9C8EB9002140DC /* NSUserDefaultsExtensions.swift */,
@@ -123,8 +117,13 @@
 				6D66225F1E9C8EB9002140DC /* UIButtonExtensions.swift */,
 				6D6622601E9C8EB9002140DC /* UIColorExtensions.swift */,
 				6D6622611E9C8EB9002140DC /* UIFontExtensions.swift */,
-				6D6622521E9C8B9A002140DC /* UIStoryboardExtensions.swift */,
 				6D6622541E9C8BEE002140DC /* UIImageExtensions.swift */,
+				6D6622691E9C8ECB002140DC /* UILabelExtensions.swift */,
+				6D6622521E9C8B9A002140DC /* UIStoryboardExtensions.swift */,
+				6D66226A1E9C8ECB002140DC /* UITableViewExtensions.swift */,
+				6D66226B1E9C8ECB002140DC /* UITextFieldExtensions.swift */,
+				6D66226C1E9C8ECB002140DC /* UIViewControllerExtensions.swift */,
+				6D66226D1E9C8ECB002140DC /* UIViewExtensions.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -150,6 +149,7 @@
 		6D66225A1E9C8C60002140DC /* Storyboards */ = {
 			isa = PBXGroup;
 			children = (
+				6D6622411E9C898E002140DC /* Main.storyboard */,
 				6D6622791E9C993C002140DC /* People.storyboard */,
 			);
 			name = Storyboards;
